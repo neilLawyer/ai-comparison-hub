@@ -1,0 +1,126 @@
+[
+  {
+    "id": "primary-task",
+    "question": "What will you mostly use AI for?",
+    "options": [
+      {
+        "label": "Coding & software development",
+        "weights": { "claude": 5, "gpt": 3, "gemini": 2, "grok": 2, "deepseek": 4, "llama": 2 }
+      },
+      {
+        "label": "Writing & content creation",
+        "weights": { "claude": 4, "gpt": 4, "gemini": 3, "grok": 2, "deepseek": 1, "llama": 2 }
+      },
+      {
+        "label": "Business analysis & strategy",
+        "weights": { "claude": 4, "gpt": 5, "gemini": 4, "grok": 1, "deepseek": 1, "llama": 2 }
+      },
+      {
+        "label": "Learning & research",
+        "weights": { "claude": 3, "gpt": 3, "gemini": 5, "grok": 2, "deepseek": 2, "llama": 2 }
+      },
+      {
+        "label": "Casual, everyday questions",
+        "weights": { "claude": 2, "gpt": 4, "gemini": 4, "grok": 3, "deepseek": 2, "llama": 3 }
+      }
+    ]
+  },
+  {
+    "id": "budget",
+    "question": "What's your budget for AI tools?",
+    "options": [
+      {
+        "label": "Free or casual use only",
+        "weights": { "claude": 2, "gpt": 3, "gemini": 3, "grok": 2, "deepseek": 4, "llama": 5 }
+      },
+      {
+        "label": "I'll pay for a consumer subscription (~$20/mo)",
+        "weights": { "claude": 4, "gpt": 4, "gemini": 4, "grok": 3, "deepseek": 1, "llama": 1 }
+      },
+      {
+        "label": "I pay per API token and cost matters a lot",
+        "weights": { "claude": 2, "gpt": 3, "gemini": 3, "grok": 1, "deepseek": 5, "llama": 4 }
+      },
+      {
+        "label": "Cost isn't a major constraint",
+        "weights": { "claude": 5, "gpt": 5, "gemini": 4, "grok": 3, "deepseek": 1, "llama": 1 }
+      }
+    ]
+  },
+  {
+    "id": "speed-vs-depth",
+    "question": "Do you care more about response speed or depth of reasoning?",
+    "options": [
+      {
+        "label": "Fastest answer, even if slightly less thorough",
+        "weights": { "claude": 1, "gpt": 2, "gemini": 3, "grok": 5, "deepseek": 4, "llama": 3 }
+      },
+      {
+        "label": "Most thorough, carefully reasoned answer",
+        "weights": { "claude": 5, "gpt": 4, "gemini": 4, "grok": 2, "deepseek": 3, "llama": 1 }
+      },
+      {
+        "label": "Balanced — a bit of both",
+        "weights": { "claude": 3, "gpt": 5, "gemini": 4, "grok": 3, "deepseek": 3, "llama": 2 }
+      }
+    ]
+  },
+  {
+    "id": "technical-level",
+    "question": "How technical are you?",
+    "options": [
+      {
+        "label": "Non-technical — I just want a helpful assistant",
+        "weights": { "claude": 2, "gpt": 5, "gemini": 4, "grok": 2, "deepseek": 1, "llama": 1 }
+      },
+      {
+        "label": "Comfortable with technology, but not a programmer",
+        "weights": { "claude": 3, "gpt": 4, "gemini": 4, "grok": 3, "deepseek": 2, "llama": 2 }
+      },
+      {
+        "label": "Developer or highly technical",
+        "weights": { "claude": 5, "gpt": 3, "gemini": 3, "grok": 2, "deepseek": 5, "llama": 4 }
+      }
+    ]
+  },
+  {
+    "id": "context-needs",
+    "question": "Do you need to work with very long documents or huge amounts of context?",
+    "options": [
+      {
+        "label": "Yes, frequently — whole books, codebases, or long transcripts",
+        "weights": { "claude": 3, "gpt": 3, "gemini": 5, "grok": 1, "deepseek": 1, "llama": 4 }
+      },
+      {
+        "label": "Occasionally",
+        "weights": { "claude": 3, "gpt": 3, "gemini": 4, "grok": 2, "deepseek": 2, "llama": 2 }
+      },
+      {
+        "label": "Rarely — most of my questions are short",
+        "weights": { "claude": 3, "gpt": 4, "gemini": 3, "grok": 3, "deepseek": 3, "llama": 2 }
+      }
+    ]
+  },
+  {
+    "id": "special-priorities",
+    "question": "Does anything here matter especially to you?",
+    "options": [
+      {
+        "label": "Open-weight / self-hosting flexibility",
+        "weights": { "claude": 0, "gpt": 0, "gemini": 0, "grok": 0, "deepseek": 3, "llama": 5 }
+      },
+      {
+        "label": "Real-time awareness of current events",
+        "weights": { "claude": 0, "gpt": 1, "gemini": 1, "grok": 5, "deepseek": 0, "llama": 0 }
+      },
+      {
+        "label": "Multimodal understanding (image, audio, video)",
+        "weights": { "claude": 2, "gpt": 4, "gemini": 5, "grok": 2, "deepseek": 0, "llama": 2 }
+      },
+      {
+        "label": "None of these — just want the best general assistant",
+        "weights": { "claude": 4, "gpt": 4, "gemini": 3, "grok": 2, "deepseek": 2, "llama": 1 }
+      }
+    ]
+  }
+]

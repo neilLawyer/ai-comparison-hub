@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "good-vs-bad-prompts",
+    "title": "Good vs. Bad Prompts",
+    "category": "prompt-engineering",
+    "summary": "The single highest-leverage skill in working with AI models: how to ask so you get a useful answer the first time.",
+    "difficulty": "beginner",
+    "content": "## Why prompts matter more than model choice\n\nMost disappointing AI outputs are a prompting problem, not a model problem. A vague ask gets a vague, generic answer — from any model.\n\n### Bad prompt\n> Write about marketing.\n\nThis has no audience, no format, no length, no goal. The model has to guess everything, so it defaults to the most generic possible answer.\n\n### Good prompt\n> Write a 200-word LinkedIn post aimed at small e-commerce founders, explaining why abandoned-cart emails convert better than generic newsletters. Conversational tone, one concrete example, end with a question.\n\n### What changed\n- **Audience** — who is this for?\n- **Format & length** — post, not essay; 200 words, not open-ended.\n- **Constraint** — one concrete example, ends with a question.\n- **Tone** — conversational, not corporate.\n\n### A reusable template\n1. **Role/context** — who should the model act as, and what's the situation?\n2. **Task** — the specific thing you want produced or answered.\n3. **Format** — length, structure, output type (list, table, code, prose).\n4. **Constraints** — what to avoid, what to include, tone.\n5. **Examples** — 1-2 examples of the style/quality you want, if you have them.\n\nYou don't need all five every time — but the more ambiguous the task, the more of these you should specify."
+  },
+  {
+    "slug": "chain-of-thought",
+    "title": "Chain-of-Thought: Getting Models to Show Their Work",
+    "category": "techniques",
+    "summary": "Asking a model to reason step-by-step before answering measurably improves accuracy on math, logic, and multi-step problems.",
+    "difficulty": "intermediate",
+    "content": "## The core idea\n\nLanguage models generate one token at a time, using everything generated so far as context. If you ask for just a final answer to a hard problem, the model has to \"figure it out\" and commit to an answer simultaneously. If you ask it to reason step by step first, each step becomes context for the next — closer to how a person works through a hard problem on paper instead of blurting a guess.\n\n### Prompting for it\n> Before giving your final answer, work through this step by step: identify the knowns, identify what's being asked, and check your answer against the original question.\n\nMany current models do a version of this automatically for hard problems (sometimes called \"extended thinking\" or \"reasoning mode\") — check whether the model/interface you're using has a reasoning toggle before manually prompting for it, since asking twice can waste tokens.\n\n### When it helps most\n- Multi-step math and logic problems\n- Debugging (trace through the code's actual execution)\n- Any task where a wrong first guess tends to get \"defended\" rather than corrected\n\n### When it's overkill\n- Simple factual lookups\n- Short creative writing\n- Anything where you'll read and verify the answer yourself anyway"
+  },
+  {
+    "slug": "understanding-hallucinations",
+    "title": "Understanding Hallucinations",
+    "category": "concepts",
+    "summary": "Why models confidently state wrong things, and the habits that catch it before it costs you.",
+    "difficulty": "beginner",
+    "content": "## What a hallucination actually is\n\nA hallucination is a fluent, confident-sounding output that's factually wrong — a fabricated citation, an invented API method, a wrong date. It happens because models generate the *most statistically likely next words*, not because they check a fact database. When a model doesn't \"know\" something, it doesn't reliably say so — it often produces something plausible-shaped instead.\n\n### Where it shows up most\n- Citations, sources, and quotes (models can invent a very real-looking paper title)\n- Niche or very recent facts outside training data\n- Specific numbers (statistics, prices, dates) presented with false precision\n- API/library method names that sound right but don't exist\n\n### Habits that catch it\n- **Ask for sources, then check them** — don't just ask \"is this true?\", which the model will often confidently confirm.\n- **Cross-check with a second model or a search engine** for anything you'll act on.\n- **Be suspicious of oddly specific numbers** with no cited source.\n- **Test generated code/commands in a real environment** before trusting they work.\n\nHallucination rates vary meaningfully between models and have generally improved over time — but no current model is at zero, so verification habits matter more than model choice here."
+  },
+  {
+    "slug": "context-windows-explained",
+    "title": "Context Windows, Explained",
+    "category": "concepts",
+    "summary": "What a context window actually is, why it's the ceiling on how much a model can 'remember' in one conversation, and how to work within it.",
+    "difficulty": "beginner",
+    "content": "## The short version\n\nA context window is the maximum amount of text (measured in tokens, see the tokens guide) a model can consider at once — your entire conversation history, any documents you've pasted in, and its own response, combined. Once you exceed it, the oldest content gets dropped or the request fails, depending on the interface.\n\n### Why it matters\n- A small context window means long documents get truncated or summarized before the model sees them.\n- A large context window lets you paste in a whole codebase, book chapter, or long conversation history — but doesn't guarantee the model weighs everything in it equally well (attention to content earlier in a very long context tends to be less reliable than to recent content).\n- Every token in your context — including old conversation turns — is being (re-)processed and, on API pricing, billed as input tokens each time.\n\n### Practical implications\n- For long documents, consider whether you need the whole thing in context or just the relevant section.\n- If a long conversation starts giving worse answers, it may be a sign you're pushing near the context limit — starting a fresh conversation with a concise summary of what matters can help.\n- Context window size is one of the specs on each model's detail page here — check it before assuming a model can handle your entire document at once."
+  },
+  {
+    "slug": "tokens-and-pricing",
+    "title": "Tokens: What You're Actually Paying For",
+    "category": "concepts",
+    "summary": "The unit behind every API price tag — and how to estimate cost before you run a big job.",
+    "difficulty": "beginner",
+    "content": "## What a token is\n\nModels don't process text character-by-character or word-by-word — they break it into **tokens**, chunks that are often close to (but not exactly) whole words. As a rough rule of thumb in English, 1 token is about 4 characters, or roughly 0.75 words — so 100 tokens is about 75 words.\n\n### Why it matters for cost\nAPI pricing is quoted per million tokens, split into **input** (what you send) and **output** (what the model generates) — and output tokens are usually priced higher than input tokens. A long conversation re-sends the whole history as input tokens on every turn, so cost grows with conversation length, not just with your latest message.\n\n### Estimating cost\n1. Estimate your input size in tokens (use the token estimator tool on this site, or the ~4-characters-per-token rule of thumb).\n2. Estimate expected output length the same way.\n3. Multiply by the model's per-million-token input/output prices and divide by 1,000,000.\n\n### When this matters vs. doesn't\n- If you're using a flat-rate consumer subscription (like a monthly Pro plan), token counting mostly doesn't matter to your wallet — it matters more for usage limits.\n- If you're calling an API directly (for a product, an agent, or heavy automated use), token cost adds up fast — this is where model choice and prompt length genuinely affect your bill."
+  },
+  {
+    "slug": "data-privacy-with-ai",
+    "title": "Data Privacy When Using AI Tools",
+    "category": "safety",
+    "summary": "What actually happens to what you paste into a chat window, and how to reduce risk.",
+    "difficulty": "intermediate",
+    "content": "## The basic risk model\n\nWhen you send text to an AI product, it typically leaves your device and is processed on the provider's servers. Depending on the product and its settings, that data may also be:\n- Logged for abuse monitoring\n- Used to improve future model training (often opt-out, sometimes opt-in — check settings)\n- Retained for some period even after you delete a conversation\n\nAPI access (as opposed to consumer chat apps) generally has stricter, more explicit data-handling terms — but always check the current policy of whichever product you're using rather than assuming.\n\n### Practical rules of thumb\n- Don't paste passwords, API keys, or secrets into a chat window — treat it like you would any third-party web form.\n- For regulated data (health records, financial account details, anything covered by workplace compliance policy), check your organization's approved-tools policy before pasting anything in — a personal AI subscription is usually not automatically compliant.\n- Look for an explicit \"don't use my data for training\" or business/enterprise tier setting if this matters to you — most major providers offer one.\n- Assume anything you send could theoretically be reviewed by the provider (for safety/abuse purposes) even if it's never used for training.\n\nThis isn't a reason to avoid AI tools — it's the same due diligence you'd apply to any cloud service handling your data."
+  },
+  {
+    "slug": "verifying-ai-output",
+    "title": "Verifying AI Output Before You Trust It",
+    "category": "safety",
+    "summary": "A short checklist for the moment right before you copy-paste an AI answer into something that matters.",
+    "difficulty": "intermediate",
+    "content": "## The habit that matters most\n\nThe single biggest risk with AI tools isn't a bad answer — it's a bad answer you didn't check. Build a short verification habit proportional to the stakes of what you're doing.\n\n### A quick triage\n- **Low stakes** (brainstorming, first drafts, casual questions): read it, use judgment, move on.\n- **Medium stakes** (code you'll run, content you'll publish, a decision you'll act on): spend a few minutes verifying the specific claims or logic that matter most.\n- **High stakes** (financial, medical, legal, safety-critical): treat the output as a first draft for a professional to review, not a final answer.\n\n### Concrete checks\n- **Code:** run it. Don't just read it and assume it works.\n- **Facts/citations:** search for the source independently rather than asking the same model to confirm itself.\n- **Numbers:** redo at least one calculation by hand or in a spreadsheet.\n- **Advice/recommendations:** ask what could make this wrong, and see if the model's own caveats reveal a gap.\n\nThe goal isn't distrust — it's calibrating how much verification a given task deserves, the same way you would with advice from a knowledgeable stranger."
+  }
+]

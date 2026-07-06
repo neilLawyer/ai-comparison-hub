@@ -1,0 +1,97 @@
+[
+  {
+    "slug": "software-development",
+    "name": "Software Development",
+    "icon": "Code2",
+    "criteria": [
+      "Debugging ability",
+      "Frontend vs backend depth",
+      "Algorithm solving",
+      "Codebase-scale context handling",
+      "Tool/agentic use (running commands, editing files)"
+    ],
+    "recommendedModels": ["claude", "gpt", "deepseek"],
+    "playbook": "## Picking a model for coding\n\nFor day-to-day feature work, prioritize models with strong **agentic tool use** — the ability to read a codebase, run commands, and iterate on failures without hand-holding. For one-off snippets or algorithm questions, raw reasoning quality matters more than tool use.\n\n**Workflow tips:**\n- Give the model the actual error message and relevant file, not a paraphrase.\n- Ask for a plan before code on anything touching more than 2-3 files.\n- Use a second model (or a fresh session) to review a diff before you merge it — a change that looks right to its author often isn't.\n\n**Budget note:** coding sessions burn tokens fast once a model starts reading files. If you're on metered API pricing, watch input costs on large context windows more than output costs.",
+    "redFlags": [
+      "Trusting generated code to be secure without review — models happily produce SQL injection and XSS patterns if asked naively",
+      "Letting an agentic tool run destructive shell commands unattended",
+      "Assuming a model's training data includes the newest version of a fast-moving framework or API"
+    ]
+  },
+  {
+    "slug": "writing-content",
+    "name": "Writing & Content",
+    "icon": "PenLine",
+    "criteria": [
+      "Voice/tone matching",
+      "Long-form coherence",
+      "Editing vs. drafting from scratch",
+      "Factual grounding in claims",
+      "Avoiding generic AI-sounding phrasing"
+    ],
+    "recommendedModels": ["claude", "gpt", "gemini"],
+    "playbook": "## Picking a model for writing\n\nModels differ more in **voice** than in raw capability for writing tasks. Test 2-3 models on a short sample in your actual voice before committing to one for a big project.\n\n**Workflow tips:**\n- Paste 2-3 paragraphs of your own past writing as a style reference before asking for new content.\n- Ask for multiple structural outlines before drafting prose — it's cheaper to fix structure than sentences.\n- Explicitly ask the model to avoid its own tics (excessive hedging, repetitive sentence openers, over-use of certain transition words).",
+    "redFlags": [
+      "Publishing factual claims (stats, quotes, dates) without independent verification",
+      "Letting default AI phrasing patterns ship unedited — readers increasingly notice",
+      "Using one long unstructured prompt instead of iterating in stages (outline, draft, edit)"
+    ]
+  },
+  {
+    "slug": "business",
+    "name": "Business & Strategy",
+    "icon": "Briefcase",
+    "criteria": [
+      "Data analysis on spreadsheets/reports",
+      "Summarization of long documents",
+      "Structured decision frameworks",
+      "Email and communication drafting",
+      "Handling ambiguous, underspecified asks"
+    ],
+    "recommendedModels": ["gpt", "gemini", "claude"],
+    "playbook": "## Picking a model for business use\n\nMost business use cases are read-heavy (long documents, spreadsheets, reports) rather than write-heavy. Prioritize context window size and summarization accuracy over creative flair.\n\n**Workflow tips:**\n- For financial or numeric analysis, always ask the model to show its calculation steps and spot-check at least one number by hand.\n- Break multi-part strategic questions into separate turns rather than one mega-prompt — you'll get more scrutiny on each part.\n- Use the model to generate a first-draft structure for decks/memos, but keep judgment calls (what to prioritize, what to cut) as a human step.",
+    "redFlags": [
+      "Feeding confidential or regulated data into a consumer-tier chat product without checking your organization's data policy",
+      "Treating model-generated financial projections as verified rather than a starting draft",
+      "Asking one giant open-ended question instead of a scoped, checkable one"
+    ]
+  },
+  {
+    "slug": "education",
+    "name": "Education & Learning",
+    "icon": "GraduationCap",
+    "criteria": [
+      "Explaining concepts at the right level",
+      "Patience with follow-up/clarifying questions",
+      "Generating practice problems with correct answers",
+      "Avoiding just handing over answers when learning is the goal",
+      "Multimodal support (images of handwritten work, diagrams)"
+    ],
+    "recommendedModels": ["gemini", "claude", "gpt"],
+    "playbook": "## Picking a model for learning\n\nThe best study-tool model isn't necessarily the most capable one — it's the one you can instruct to act like a tutor instead of an answer key.\n\n**Workflow tips:**\n- Explicitly prompt: \"Don't give me the final answer — ask me guiding questions until I get there.\"\n- Ask for a worked example first, then a similar problem to try solo, then have the model check your work.\n- For visual subjects (math diagrams, chemistry structures, handwriting), use a model with strong image understanding.",
+    "redFlags": [
+      "Using AI to complete graded work in violation of your institution's academic integrity policy",
+      "Accepting a confident-sounding explanation of a niche topic without cross-checking a textbook or teacher",
+      "Letting the model do all the problem-solving instead of guiding you through it"
+    ]
+  },
+  {
+    "slug": "healthcare",
+    "name": "Healthcare & Wellness",
+    "icon": "HeartPulse",
+    "criteria": [
+      "Caution/hedging on medical claims",
+      "Ability to explain lab results or terminology in plain language",
+      "Citing when something needs a licensed professional",
+      "Avoiding overconfident diagnosis-like language",
+      "Privacy handling of sensitive personal data"
+    ],
+    "recommendedModels": ["claude", "gpt", "gemini"],
+    "playbook": "## Using AI around health topics\n\nTreat every model here as a **research assistant for questions to bring to a professional**, not a diagnostic tool. The best models for this use case are the ones that reliably flag their own limits rather than the ones that sound most confident.\n\n**Workflow tips:**\n- Ask the model to explain lab results, medication interactions, or terminology in plain language — this is a genuinely strong use case.\n- Avoid pasting personally identifying health information into consumer chat products; use privacy-respecting settings or de-identify details first.\n- Always follow up anything that sounds like a diagnosis or treatment recommendation with a licensed provider.",
+    "redFlags": [
+      "Using any model's output as a substitute for professional medical diagnosis or emergency care",
+      "Pasting identifiable patient data into a consumer product without checking privacy/compliance implications",
+      "Trusting a confident tone as a proxy for medical accuracy"
+    ]
+  }
+]

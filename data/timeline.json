@@ -1,0 +1,163 @@
+[
+  {
+    "date": "2012-09-30",
+    "title": "AlexNet wins ImageNet",
+    "description": "A deep convolutional neural network dramatically outperforms prior approaches on the ImageNet competition, kicking off the modern deep learning boom.",
+    "category": "research",
+    "isPrediction": false
+  },
+  {
+    "date": "2017-06-12",
+    "title": "\"Attention Is All You Need\" introduces the Transformer",
+    "description": "Google researchers publish the Transformer architecture, which becomes the foundation for nearly every major language model that follows.",
+    "category": "research",
+    "isPrediction": false
+  },
+  {
+    "date": "2018-06-11",
+    "title": "OpenAI releases GPT-1",
+    "description": "The first Generative Pre-trained Transformer paper demonstrates that unsupervised pretraining followed by fine-tuning works well for language tasks.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2019-02-14",
+    "title": "OpenAI announces GPT-2",
+    "description": "A significantly larger language model that OpenAI initially withheld full release of, citing misuse concerns — an early flashpoint in AI safety debates.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2020-05-28",
+    "title": "OpenAI releases GPT-3",
+    "description": "A 175-billion-parameter model that popularizes few-shot prompting and shows dramatic gains from scale, reshaping expectations for what language models can do.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2021-01-05",
+    "title": "OpenAI announces DALL-E",
+    "description": "One of the first widely-noticed text-to-image models, showing the same transformer approach generalizing well beyond text.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2022-04-06",
+    "title": "DeepMind publishes the Chinchilla scaling laws",
+    "description": "Research showing many large models of the era were undertrained relative to their size, reshaping how labs balance model size against training data volume.",
+    "category": "research",
+    "isPrediction": false
+  },
+  {
+    "date": "2022-11-30",
+    "title": "ChatGPT launches",
+    "description": "OpenAI's chat interface over GPT-3.5 becomes the fastest-growing consumer application in history, bringing large language models to a mainstream audience overnight.",
+    "category": "product-launch",
+    "isPrediction": false
+  },
+  {
+    "date": "2023-02-24",
+    "title": "Meta releases LLaMA",
+    "description": "Meta's first LLaMA model family, initially released to researchers, becomes the foundation of a large open-weight ecosystem after weights leak publicly.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2023-03-14",
+    "title": "GPT-4 and Claude both arrive",
+    "description": "OpenAI releases GPT-4 and Anthropic releases the first Claude model in the same month, marking the start of sustained multi-lab frontier competition.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2023-07-11",
+    "title": "Anthropic releases Claude 2",
+    "description": "A significant capability and context-window jump for Anthropic's model line, expanding usable context to 100K tokens.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2023-12-06",
+    "title": "Google announces Gemini",
+    "description": "Google's Gemini family launches as a natively multimodal model built from the ground up rather than bolting vision onto a text model.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2024-03-04",
+    "title": "Anthropic releases the Claude 3 family",
+    "description": "Opus, Sonnet, and Haiku launch as a tiered family trading off capability for cost and speed — a pattern other labs converge on.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2024-05-13",
+    "title": "OpenAI releases GPT-4o",
+    "description": "A faster, natively multimodal model with real-time voice conversation, offered free to a much wider tier of users.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2024-09-12",
+    "title": "OpenAI releases o1",
+    "description": "The first widely-used \"reasoning model\" that spends extra inference-time compute working through a problem before answering, starting an industry-wide reasoning-model era.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2025-01-20",
+    "title": "DeepSeek releases R1",
+    "description": "An open-weight reasoning model matching much of the frontier's capability at a fraction of the training and inference cost, disrupting assumptions about compute moats.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2025-02-24",
+    "title": "Anthropic releases Claude 3.7 Sonnet",
+    "description": "A hybrid model that can answer quickly or switch into an extended step-by-step reasoning mode within the same model.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2025-04-05",
+    "title": "Meta releases the Llama 4 family",
+    "description": "Scout and Maverick launch with very large context windows and a mixture-of-experts architecture, continuing Meta's open-weight strategy.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2025-08-07",
+    "title": "OpenAI releases GPT-5",
+    "description": "A unified model that internally routes between fast and deep-reasoning modes, replacing the separate GPT-4-series and o-series naming.",
+    "category": "model-release",
+    "isPrediction": false
+  },
+  {
+    "date": "2026-12-31",
+    "title": "Prediction: agentic AI becomes the default interface for complex software work",
+    "description": "Industry watchers expect autonomous, multi-step agentic tool use — rather than single-turn chat — to become the primary way developers and knowledge workers interact with frontier models.",
+    "category": "prediction",
+    "isPrediction": true
+  },
+  {
+    "date": "2027-06-30",
+    "title": "Prediction: on-device frontier-class models reach flagship phones",
+    "description": "Continued efficiency gains are expected to bring near-frontier model capability to on-device inference on high-end consumer hardware, reducing reliance on cloud API calls for everyday tasks.",
+    "category": "prediction",
+    "isPrediction": true
+  },
+  {
+    "date": "2027-12-31",
+    "title": "Prediction: AI-assisted scientific discovery reaches real-world deployment",
+    "description": "Several labs are racing to claim the first widely recognized case of an AI system materially contributing to a deployed scientific discovery, such as a novel material or drug candidate.",
+    "category": "prediction",
+    "isPrediction": true
+  },
+  {
+    "date": "2028-12-31",
+    "title": "Prediction: frontier AI regulation converges across major economies",
+    "description": "Analysts anticipate the patchwork of national AI regulations (US, EU, China, and others) will move toward greater — though incomplete — alignment on safety testing and disclosure requirements for frontier models.",
+    "category": "prediction",
+    "isPrediction": true
+  }
+]

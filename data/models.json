@@ -1,0 +1,230 @@
+[
+  {
+    "id": "claude",
+    "name": "Claude Sonnet 5",
+    "provider": "Anthropic",
+    "logoUrl": "",
+    "description": "Anthropic's flagship model, tuned for careful reasoning, coding, and long agentic tool-use sessions.",
+    "releaseDate": "2026-02-15",
+    "modality": ["text", "image", "code"],
+    "scores": {
+      "coding": 96,
+      "reasoning": 93,
+      "creativity": 85,
+      "speed": 78,
+      "accuracy": 91,
+      "dataAnalysis": 88,
+      "businessUse": 92,
+      "educationUse": 87
+    },
+    "pricing": {
+      "inputPerMTokens": 3,
+      "outputPerMTokens": 15,
+      "hasFreeTier": true,
+      "subscriptionPrice": 20
+    },
+    "contextWindow": 200000,
+    "strengths": [
+      "Strong, reliable coding and debugging across large codebases",
+      "Careful, well-hedged reasoning on ambiguous questions",
+      "Long agentic sessions (multi-step tool use) without losing the thread"
+    ],
+    "weaknesses": [
+      "Pricier than budget-tier models for high-volume API use",
+      "More conservative/hedged tone than some competitors prefer",
+      "Smaller context window than Gemini's largest tier"
+    ],
+    "bestFor": ["coding", "long documents", "agentic workflows", "business writing"],
+    "isEstimated": true
+  },
+  {
+    "id": "gpt",
+    "name": "GPT-5.1",
+    "provider": "OpenAI",
+    "logoUrl": "",
+    "description": "OpenAI's unified flagship model, blending fast responses with an adjustable deep-reasoning mode and native multimodality.",
+    "releaseDate": "2025-11-12",
+    "modality": ["text", "image", "audio", "code"],
+    "scores": {
+      "coding": 92,
+      "reasoning": 91,
+      "creativity": 88,
+      "speed": 82,
+      "accuracy": 89,
+      "dataAnalysis": 87,
+      "businessUse": 93,
+      "educationUse": 89
+    },
+    "pricing": {
+      "inputPerMTokens": 1.25,
+      "outputPerMTokens": 10,
+      "hasFreeTier": true,
+      "subscriptionPrice": 20
+    },
+    "contextWindow": 400000,
+    "strengths": [
+      "Broad all-around competence across writing, coding, and analysis",
+      "Native multimodal input/output (voice, image)",
+      "Very large installed base of integrations and tooling"
+    ],
+    "weaknesses": [
+      "Reasoning-mode responses can be noticeably slower",
+      "Free tier is heavily rate-limited",
+      "Context window trails Gemini's largest tier"
+    ],
+    "bestFor": ["general assistant use", "business writing", "multimodal tasks", "brainstorming"],
+    "isEstimated": true
+  },
+  {
+    "id": "gemini",
+    "name": "Gemini 3 Pro",
+    "provider": "Google",
+    "logoUrl": "",
+    "description": "Google's flagship model, built around a very large context window and native video/audio/image understanding.",
+    "releaseDate": "2025-11-18",
+    "modality": ["text", "image", "audio", "video", "code"],
+    "scores": {
+      "coding": 88,
+      "reasoning": 90,
+      "creativity": 84,
+      "speed": 85,
+      "accuracy": 88,
+      "dataAnalysis": 93,
+      "businessUse": 88,
+      "educationUse": 90
+    },
+    "pricing": {
+      "inputPerMTokens": 1.25,
+      "outputPerMTokens": 10,
+      "hasFreeTier": true,
+      "subscriptionPrice": 19.99
+    },
+    "contextWindow": 1000000,
+    "strengths": [
+      "Largest practical context window of the major models — whole codebases or books at once",
+      "Best-in-class native video and audio understanding",
+      "Tight integration with Google Workspace and Search"
+    ],
+    "weaknesses": [
+      "Very long contexts can dilute attention to early content",
+      "Creative writing voice seen as slightly more generic by some users",
+      "Pricing steps up above the 200K-token tier"
+    ],
+    "bestFor": ["data analysis", "long documents", "multimodal research", "education"],
+    "isEstimated": true
+  },
+  {
+    "id": "grok",
+    "name": "Grok 4",
+    "provider": "xAI",
+    "logoUrl": "",
+    "description": "xAI's flagship model, with real-time access to X/Twitter data and a faster, more permissive response style.",
+    "releaseDate": "2025-07-09",
+    "modality": ["text", "image", "code"],
+    "scores": {
+      "coding": 85,
+      "reasoning": 89,
+      "creativity": 82,
+      "speed": 88,
+      "accuracy": 82,
+      "dataAnalysis": 80,
+      "businessUse": 78,
+      "educationUse": 76
+    },
+    "pricing": {
+      "inputPerMTokens": 3,
+      "outputPerMTokens": 15,
+      "hasFreeTier": true,
+      "subscriptionPrice": 30
+    },
+    "contextWindow": 256000,
+    "strengths": [
+      "Real-time awareness of current events and social conversation",
+      "Fast response times",
+      "Less filtered/more direct answers as a stylistic choice"
+    ],
+    "weaknesses": [
+      "Accuracy more variable on niche factual questions",
+      "Smaller third-party integration ecosystem",
+      "Less proven track record in enterprise/business settings"
+    ],
+    "bestFor": ["current events", "fast iteration", "casual research"],
+    "isEstimated": true
+  },
+  {
+    "id": "deepseek",
+    "name": "DeepSeek V3.2",
+    "provider": "DeepSeek",
+    "logoUrl": "",
+    "description": "An aggressively priced, open-weight-friendly model line with strong math and coding benchmarks relative to cost.",
+    "releaseDate": "2025-09-29",
+    "modality": ["text", "code"],
+    "scores": {
+      "coding": 90,
+      "reasoning": 87,
+      "creativity": 74,
+      "speed": 90,
+      "accuracy": 85,
+      "dataAnalysis": 83,
+      "businessUse": 72,
+      "educationUse": 79
+    },
+    "pricing": {
+      "inputPerMTokens": 0.28,
+      "outputPerMTokens": 0.42,
+      "hasFreeTier": true,
+      "subscriptionPrice": null
+    },
+    "contextWindow": 128000,
+    "strengths": [
+      "Exceptional cost-to-performance ratio, especially for coding and math",
+      "Open-weight releases available for self-hosting",
+      "Fast inference"
+    ],
+    "weaknesses": [
+      "Weaker creative writing voice than closed frontier models",
+      "No polished consumer subscription tier or app ecosystem",
+      "Smaller context window than the other flagships here"
+    ],
+    "bestFor": ["budget-conscious coding", "math", "high-volume API use"],
+    "isEstimated": true
+  },
+  {
+    "id": "llama",
+    "name": "Llama 4 Maverick",
+    "provider": "Meta",
+    "logoUrl": "",
+    "description": "Meta's open-weight flagship model, designed to be self-hosted, fine-tuned, and run cheaply at scale via third-party providers.",
+    "releaseDate": "2025-04-05",
+    "modality": ["text", "image", "code"],
+    "scores": {
+      "coding": 80,
+      "reasoning": 81,
+      "creativity": 78,
+      "speed": 84,
+      "accuracy": 79,
+      "dataAnalysis": 78,
+      "businessUse": 75,
+      "educationUse": 77
+    },
+    "pricing": {
+      "inputPerMTokens": 0.2,
+      "outputPerMTokens": 0.2,
+      "hasFreeTier": true,
+      "subscriptionPrice": null
+    },
+    "contextWindow": 1000000,
+    "strengths": [
+      "Open weights — self-hostable and fine-tunable for custom use cases",
+      "No first-party per-token pricing lock-in; competitive third-party hosting",
+      "Free to use via the Meta AI consumer app"
+    ],
+    "weaknesses": [
+      "Trails the closed frontier labs on the hardest reasoning and coding benchmarks",
+      "Quality varies by which third-party host/provider you use",
+      "No official first-party consumer subscription with premium features"
+    ],
+    "bestFor": ["self-hosting", "fine-tuning", "budget-conscious high-volume use"],
+    "isEstimated": true
+  }
+]
