@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getModels, getQuizQuestions } from "@/lib/data";
 import { QuizWizard } from "@/components/quiz/quiz-wizard";
+import { PageHeader } from "@/components/shared/page-header";
 
 export const metadata: Metadata = {
   title: "Recommend",
@@ -12,15 +13,17 @@ export default function RecommendPage() {
   const questions = getQuizQuestions();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mb-10 space-y-2 text-center">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          Find your best-fit model
-        </h1>
-        <p className="mx-auto max-w-xl text-muted-foreground">
-          {`Answer ${questions.length} quick questions and we'll recommend the model that fits your task, budget, and priorities.`}
-        </p>
-      </div>
+    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
+      <PageHeader
+        align="center"
+        eyebrow="Recommender"
+        title={
+          <>
+            Your model, <em className="text-primary">in one minute.</em>
+          </>
+        }
+        description={`Answer ${questions.length} quick questions and we'll recommend the model that fits your task, budget, and priorities.`}
+      />
       <QuizWizard questions={questions} models={models} />
     </div>
   );

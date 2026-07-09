@@ -40,7 +40,7 @@ export default async function FieldPlaybookPage({ params }: Props) {
         Back to Learn
       </Link>
 
-      <h1 className="mb-3 text-3xl font-semibold tracking-tight">{field.name}</h1>
+      <h1 className="mb-3 font-display text-4xl tracking-tight sm:text-5xl">{field.name}</h1>
 
       <Card className="mb-8 space-y-2 p-5">
         <div className="flex items-center gap-1.5 text-sm font-medium">

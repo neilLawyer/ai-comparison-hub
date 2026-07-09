@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTimeline } from "@/lib/data";
 import { TimelineView } from "@/components/timeline/timeline-view";
+import { PageHeader } from "@/components/shared/page-header";
 
 export const metadata: Metadata = {
   title: "Timeline",
@@ -11,14 +12,16 @@ export default function TimelinePage() {
   const events = getTimeline();
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mb-10 space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">AI Timeline</h1>
-        <p className="max-w-2xl text-muted-foreground">
-          From AlexNet to today&apos;s frontier models — plus a few clearly
-          labeled predictions for what&apos;s next.
-        </p>
-      </div>
+    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
+      <PageHeader
+        eyebrow="Timeline"
+        title={
+          <>
+            How we got here, <em className="text-primary">and what&apos;s next.</em>
+          </>
+        }
+        description="From AlexNet to today's frontier models — plus a few clearly labeled predictions for what's next."
+      />
       <TimelineView events={events} />
     </div>
   );

@@ -51,7 +51,7 @@ export default async function GuidePage({ params }: Props) {
             {guide.difficulty}
           </Badge>
         </div>
-        <h1 className="text-3xl font-semibold tracking-tight">{guide.title}</h1>
+        <h1 className="font-display text-4xl tracking-tight sm:text-5xl">{guide.title}</h1>
         <p className="text-lg text-muted-foreground">{guide.summary}</p>
       </div>
 

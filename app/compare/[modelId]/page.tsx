@@ -51,7 +51,7 @@ export default async function ModelDetailPage({ params }: Props) {
             className="size-14 shrink-0 text-2xl"
           />
           <div>
-            <h1 className="text-3xl font-semibold tracking-tight">{model.name}</h1>
+            <h1 className="font-display text-4xl tracking-tight sm:text-5xl">{model.name}</h1>
             <p className="text-muted-foreground">
               {model.provider} · released{" "}
               {new Date(model.releaseDate).toLocaleDateString(undefined, {

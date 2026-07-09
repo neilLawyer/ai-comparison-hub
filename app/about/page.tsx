@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ShieldCheck, Scale, RefreshCw } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { SCORE_CATEGORIES, SCORE_LABELS } from "@/lib/score-labels";
+import { PageHeader } from "@/components/shared/page-header";
 
 export const metadata: Metadata = {
   title: "About",
@@ -10,17 +11,19 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mb-10 space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">About</h1>
-        <p className="max-w-2xl text-muted-foreground">
-          AI Comparison Hub helps you figure out exactly which AI model to use,
-          how to use it well, and how to stop overpaying.
-        </p>
-      </div>
+    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
+      <PageHeader
+        eyebrow="About"
+        title={
+          <>
+            Opinionated, <em className="text-primary">on purpose.</em>
+          </>
+        }
+        description="AI Comparison Hub helps you figure out exactly which AI model to use, how to use it well, and how to stop overpaying."
+      />
 
       <section className="mb-10 space-y-3">
-        <h2 className="text-xl font-semibold">Our mission</h2>
+        <h2 className="font-display text-2xl tracking-tight">Our mission</h2>
         <p className="text-muted-foreground">
           There are dozens of capable AI models now, and picking one shouldn&apos;t
           require a research project. We combine a benchmark/comparison
@@ -30,7 +33,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mb-10 space-y-4">
-        <h2 className="text-xl font-semibold">How we grade</h2>
+        <h2 className="font-display text-2xl tracking-tight">How we grade</h2>
         <p className="text-muted-foreground">
           Every model is scored 0–100 across eight categories:
         </p>
