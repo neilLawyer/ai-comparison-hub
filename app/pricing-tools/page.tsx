@@ -15,12 +15,7 @@ export default function PricingToolsPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
       <PageHeader
-        eyebrow="Pricing tools"
-        title={
-          <>
-            Know the cost <em className="text-primary">before you commit.</em>
-          </>
-        }
+        title="Know what it costs."
         description="Estimate what a prompt actually costs across models, and figure out whether you need a subscription at all."
       />
 

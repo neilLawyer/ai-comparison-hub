@@ -14,12 +14,7 @@ export default function RankingsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
       <PageHeader
-        eyebrow="Rankings"
-        title={
-          <>
-            The pecking order, <em className="text-primary">by category.</em>
-          </>
-        }
+        title="The leaderboard."
         description="Switch categories to see how models stack up on tier lists, a full leaderboard, and a quality-vs-cost view."
       />
       <RankingsClient models={models} />

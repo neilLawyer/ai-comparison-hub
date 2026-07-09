@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 
-const PROVIDER_GRADIENTS: Record<string, string> = {
-  Anthropic: "from-orange-500/70 to-amber-600/70",
-  OpenAI: "from-emerald-500/70 to-teal-600/70",
-  Google: "from-blue-500/70 to-sky-600/70",
-  xAI: "from-zinc-500/70 to-zinc-700/70",
-  DeepSeek: "from-indigo-500/70 to-blue-600/70",
-  Meta: "from-blue-600/70 to-indigo-700/70",
+const PROVIDER_COLORS: Record<string, string> = {
+  Anthropic: "text-orange-700 dark:text-orange-400",
+  OpenAI: "text-emerald-700 dark:text-emerald-400",
+  Google: "text-blue-700 dark:text-blue-400",
+  xAI: "text-zinc-700 dark:text-zinc-300",
+  DeepSeek: "text-indigo-700 dark:text-indigo-400",
+  Meta: "text-sky-700 dark:text-sky-400",
 };
 
 export function ModelAvatar({
@@ -19,13 +19,13 @@ export function ModelAvatar({
   className?: string;
 }) {
   const initial = name.trim().charAt(0).toUpperCase();
-  const gradient = PROVIDER_GRADIENTS[provider] ?? "from-primary/60 to-primary/30";
+  const color = PROVIDER_COLORS[provider] ?? "text-foreground";
 
   return (
     <div
       className={cn(
-        "flex items-center justify-center rounded-lg bg-gradient-to-br font-semibold text-white",
-        gradient,
+        "flex items-center justify-center rounded-full border bg-muted/50 font-semibold",
+        color,
         className
       )}
       aria-hidden

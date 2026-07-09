@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { ShieldCheck, Scale, RefreshCw } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { SCORE_CATEGORIES, SCORE_LABELS } from "@/lib/score-labels";
 import { PageHeader } from "@/components/shared/page-header";
 
@@ -13,12 +11,7 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
       <PageHeader
-        eyebrow="About"
-        title={
-          <>
-            Opinionated, <em className="text-primary">on purpose.</em>
-          </>
-        }
+        title="Honest by design."
         description="AI Comparison Hub helps you figure out exactly which AI model to use, how to use it well, and how to stop overpaying."
       />
 
@@ -49,30 +42,27 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Card className="space-y-2 p-5">
-          <ShieldCheck className="size-5 text-primary" />
+      <section className="divide-y border-y">
+        <div className="grid gap-1 py-5 sm:grid-cols-[200px_1fr]">
           <h3 className="font-semibold">Honest, not hyped</h3>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground">
             Every model page lists real weaknesses, not just marketing strengths.
           </p>
-        </Card>
-        <Card className="space-y-2 p-5">
-          <Scale className="size-5 text-primary" />
+        </div>
+        <div className="grid gap-1 py-5 sm:grid-cols-[200px_1fr]">
           <h3 className="font-semibold">Consistent scoring</h3>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground">
             The same eight categories are applied to every model so comparisons
             are apples-to-apples.
           </p>
-        </Card>
-        <Card className="space-y-2 p-5">
-          <RefreshCw className="size-5 text-primary" />
+        </div>
+        <div className="grid gap-1 py-5 sm:grid-cols-[200px_1fr]">
           <h3 className="font-semibold">Refined over time</h3>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground">
             Scores and pricing here are directional estimates, refreshed
             periodically as models and prices change.
           </p>
-        </Card>
+        </div>
       </section>
     </div>
   );

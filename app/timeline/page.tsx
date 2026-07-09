@@ -14,12 +14,7 @@ export default function TimelinePage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
       <PageHeader
-        eyebrow="Timeline"
-        title={
-          <>
-            How we got here, <em className="text-primary">and what&apos;s next.</em>
-          </>
-        }
+        title="How we got here."
         description="From AlexNet to today's frontier models — plus a few clearly labeled predictions for what's next."
       />
       <TimelineView events={events} />

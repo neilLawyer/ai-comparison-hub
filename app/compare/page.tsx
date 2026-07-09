@@ -15,12 +15,7 @@ export default function ComparePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
       <PageHeader
-        eyebrow="Comparison hub"
-        title={
-          <>
-            Side by side, <em className="text-primary">no spin.</em>
-          </>
-        }
+        title="Compare models side by side."
         description="Filter by provider or price, then select up to 4 models for a detailed side-by-side breakdown."
       />
       <CompareClient models={models} />

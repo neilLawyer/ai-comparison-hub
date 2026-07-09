@@ -16,12 +16,7 @@ export default function RecommendPage() {
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
       <PageHeader
         align="center"
-        eyebrow="Recommender"
-        title={
-          <>
-            Your model, <em className="text-primary">in one minute.</em>
-          </>
-        }
+        title="Find your model."
         description={`Answer ${questions.length} quick questions and we'll recommend the model that fits your task, budget, and priorities.`}
       />
       <QuizWizard questions={questions} models={models} />

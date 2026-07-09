@@ -17,13 +17,7 @@ export default function LearnPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
       <PageHeader
-        eyebrow="Learning hub"
-        title={
-          <>
-            The model matters less than{" "}
-            <em className="text-primary">how you drive it.</em>
-          </>
-        }
+        title="Learn to use it well."
         description="Guides on prompting, core concepts, and safety — plus field-specific playbooks for getting the most out of AI in your work."
       />
 

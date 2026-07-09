@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -92,10 +92,9 @@ export function TimelineView({ events }: { events: TimelineEvent[] }) {
         )}
       </div>
 
-      <div className="flex items-center gap-2 text-xs text-muted-foreground">
-        <Sparkles className="size-3.5" />
+      <p className="text-xs text-muted-foreground">
         Predictions are directional industry expectations, not confirmed facts.
-      </div>
+      </p>
     </div>
   );
 }

@@ -1,20 +1,20 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getModels, getGuides, getFields, getTimeline } from "@/lib/data";
+import { getModels, getModelById } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ModelAvatar } from "@/components/shared/model-avatar";
 import { FadeIn } from "@/components/shared/fade-in";
 import { averageScore } from "@/lib/score-labels";
 
-function Marquee({ items }: { items: string[] }) {
-  const row = items.join("   ·   ");
+function TextLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <div className="marquee-mask overflow-hidden border-y border-border/60 py-3">
-      <div className="animate-marquee flex w-max whitespace-pre font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-        <span className="pr-12">{row}</span>
-        <span className="pr-12">{row}</span>
-      </div>
-    </div>
+    <Link
+      href={href}
+      className="group inline-flex items-center gap-1 text-[17px] font-normal text-primary hover:underline"
+    >
+      {children}
+      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+    </Link>
   );
 }
 
@@ -22,235 +22,236 @@ export default function Home() {
   const models = [...getModels()].sort(
     (a, b) => averageScore(b.scores) - averageScore(a.scores)
   );
-  const top3 = models.slice(0, 3);
-  const milestones = getTimeline().filter((e) => !e.isPrediction).length;
-  const resources = getGuides().length + getFields().length;
+  const claude = getModelById("claude")!;
+  const gpt = getModelById("gpt")!;
 
-  const tickerItems = models.map(
-    (m) => `${m.name}  ${averageScore(m.scores)}`
-  );
+  const promptCostCents = ((1000 / 1_000_000) * claude.pricing.inputPerMTokens * 100).toFixed(1);
 
   return (
     <div>
       {/* Hero */}
-      <section className="relative flex min-h-[82svh] items-center">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn className="max-w-4xl space-y-8">
-            <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.3em] text-muted-foreground">
-              The independent AI model index
-            </p>
-            <h1 className="font-display text-6xl leading-[0.95] tracking-tight text-balance sm:text-7xl lg:text-8xl">
-              Every frontier model,{" "}
-              <em className="text-primary">measured honestly.</em>
-            </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Side-by-side comparisons, tier lists, and a one-minute
-              recommender — six models scored across eight categories, priced
-              to the token.
-            </p>
-            <div className="flex flex-wrap items-center gap-6 pt-2">
-              <Button
-                size="lg"
-                className="h-12 rounded-full px-7 text-base"
-                render={<Link href="/recommend" />}
-                nativeButton={false}
-              >
-                Find my model
-              </Button>
-              <Link
-                href="/rankings"
-                className="group flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Browse the rankings
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      <Marquee items={tickerItems} />
-
-      {/* Stats */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <FadeIn>
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-4">
-            {[
-              { value: String(models.length), label: "Models tracked" },
-              { value: "8", label: "Scoring categories" },
-              { value: String(resources), label: "Guides & playbooks" },
-              { value: String(milestones), label: "Milestones charted" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="border-l border-border/60 pl-6"
-              >
-                <dd className="font-display text-5xl tabular-nums sm:text-6xl">
-                  {stat.value}
-                </dd>
-                <dt className="mt-2 text-sm text-muted-foreground">
-                  {stat.label}
-                </dt>
-              </div>
-            ))}
-          </dl>
-        </FadeIn>
-      </section>
-
-      {/* Leaderboard */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <FadeIn className="mb-12 flex items-end justify-between gap-4">
-          <div className="space-y-3">
-            <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.25em] text-primary">
-              Leaderboard
-            </p>
-            <h2 className="font-display text-4xl tracking-tight sm:text-5xl">
-              Today&apos;s top three.
-            </h2>
-          </div>
-          <Link
-            href="/rankings"
-            className="group hidden items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:flex"
-          >
-            All {models.length} models
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </FadeIn>
-        <FadeIn delay={0.05}>
-          <ol className="divide-y divide-border/60 border-y border-border/60">
-            {top3.map((model, i) => (
-              <li key={model.id}>
-                <Link
-                  href={`/compare/${model.id}`}
-                  className="group flex items-center gap-6 py-8 transition-colors hover:bg-card/60 sm:gap-10 sm:px-6"
-                >
-                  <span className="font-mono text-sm text-muted-foreground tabular-nums">
-                    0{i + 1}
-                  </span>
-                  <ModelAvatar
-                    name={model.name}
-                    provider={model.provider}
-                    className="size-12 shrink-0 text-xl"
-                  />
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-2xl tracking-tight sm:text-3xl">
-                      {model.name}
-                    </h3>
-                    <p className="mt-0.5 text-sm text-muted-foreground">
-                      {model.provider} · ${model.pricing.inputPerMTokens}/M
-                      input
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-display text-3xl tabular-nums sm:text-4xl">
-                      {averageScore(model.scores)}
-                    </p>
-                    <p className="text-xs text-muted-foreground">avg score</p>
-                  </div>
-                  <ArrowRight className="hidden size-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground sm:block" />
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </FadeIn>
-      </section>
-
-      {/* Pillars */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-[1fr_1.3fr]">
-          <FadeIn>
-            <div className="lg:sticky lg:top-28 space-y-4">
-              <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.25em] text-primary">
-                What&apos;s inside
-              </p>
-              <h2 className="font-display text-4xl tracking-tight text-balance sm:text-5xl">
-                Built to make you <em className="text-primary">decisive.</em>
-              </h2>
-              <p className="max-w-md text-muted-foreground leading-relaxed">
-                Most model roundups are marketing in a table. This is the
-                opposite: consistent scoring, real weaknesses listed next to
-                strengths, and prices you can actually compare.
-              </p>
-            </div>
-          </FadeIn>
-          <div className="space-y-12">
-            {[
-              {
-                n: "01",
-                title: "Compare without the spin",
-                body: "Radar charts and spec tables across coding, reasoning, writing, speed, and cost — up to four models side by side, weaknesses included.",
-                href: "/compare",
-                link: "Open the comparison hub",
-              },
-              {
-                n: "02",
-                title: "Learn to use it properly",
-                body: "Prompt engineering, hallucination checks, and field playbooks for developers, writers, and analysts. The model matters less than how you drive it.",
-                href: "/learn",
-                link: "Visit the learning hub",
-              },
-              {
-                n: "03",
-                title: "Pay for exactly what you need",
-                body: "Paste a prompt, see its real token cost on every model. Then find out whether you need the API, a subscription, or nothing at all.",
-                href: "/pricing-tools",
-                link: "Run the numbers",
-              },
-            ].map((f, i) => (
-              <FadeIn key={f.n} delay={i * 0.05}>
-                <div className="border-t border-border/60 pt-8">
-                  <p className="font-mono text-sm text-muted-foreground">
-                    {f.n}
-                  </p>
-                  <h3 className="mt-3 font-display text-3xl tracking-tight">
-                    {f.title}
-                  </h3>
-                  <p className="mt-3 max-w-lg leading-relaxed text-muted-foreground">
-                    {f.body}
-                  </p>
-                  <Link
-                    href={f.href}
-                    className="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary"
-                  >
-                    {f.link}
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Closing CTA */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-        <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl border border-border/60 px-6 py-20 text-center sm:py-28">
-            <div
-              aria-hidden
-              className="absolute inset-0 -z-10"
-              style={{
-                background:
-                  "radial-gradient(ellipse 70% 90% at 50% 110%, oklch(0.45 0.25 293 / 0.35), transparent 70%)",
-              }}
-            />
-            <h2 className="font-display text-5xl tracking-tight text-balance sm:text-6xl lg:text-7xl">
-              Stop guessing.
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-lg text-muted-foreground">
-              Six questions. One minute. The right model for your work and
-              budget.
-            </p>
+      <section className="px-4 pt-20 pb-16 sm:px-6 sm:pt-28">
+        <FadeIn className="mx-auto max-w-3xl space-y-5 text-center">
+          <h1 className="text-5xl font-semibold tracking-tighter text-balance sm:text-6xl lg:text-7xl">
+            Which AI should you use?
+          </h1>
+          <p className="mx-auto max-w-xl text-xl leading-relaxed text-muted-foreground">
+            Six frontier models, scored honestly across eight categories.
+            Compare them, learn them, and stop overpaying.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 pt-2">
             <Button
               size="lg"
-              className="mt-8 h-12 rounded-full px-8 text-base"
+              className="rounded-full bg-foreground px-6 text-background hover:bg-foreground/90"
               render={<Link href="/recommend" />}
               nativeButton={false}
             >
               Take the quiz
-              <ArrowRight className="size-4" />
             </Button>
+            <TextLink href="/compare">Compare models</TextLink>
           </div>
+        </FadeIn>
+
+        {/* Product shot: the actual leaderboard */}
+        <FadeIn delay={0.1} className="mx-auto mt-16 max-w-3xl">
+          <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
+            <div className="flex items-baseline justify-between border-b px-6 py-4">
+              <h2 className="font-medium">Overall ranking</h2>
+              <span className="text-sm text-muted-foreground">
+                Average of 8 categories
+              </span>
+            </div>
+            <ol className="divide-y">
+              {models.map((model, i) => {
+                const avg = averageScore(model.scores);
+                return (
+                  <li key={model.id}>
+                    <Link
+                      href={`/compare/${model.id}`}
+                      className="flex items-center gap-4 px-6 py-4 transition-colors hover:bg-muted/50"
+                    >
+                      <span className="w-4 text-sm text-muted-foreground tabular-nums">
+                        {i + 1}
+                      </span>
+                      <ModelAvatar
+                        name={model.name}
+                        provider={model.provider}
+                        className="size-8 shrink-0 text-sm"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate font-medium">{model.name}</p>
+                      </div>
+                      <div className="hidden h-1.5 w-40 overflow-hidden rounded-full bg-muted sm:block">
+                        <div
+                          className="h-full rounded-full bg-foreground"
+                          style={{ width: `${avg}%` }}
+                        />
+                      </div>
+                      <span className="w-8 text-right font-semibold tabular-nums">
+                        {avg}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+          <p className="mt-3 text-center text-xs text-muted-foreground">
+            Directional estimates, refreshed periodically.
+          </p>
+        </FadeIn>
+      </section>
+
+      {/* Tile grid */}
+      <section className="bg-[#f5f5f7] px-4 py-16 dark:bg-[#0a0a0a] sm:px-6">
+        <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2">
+          <FadeIn className="flex flex-col rounded-2xl bg-background p-8 sm:p-10">
+            <h3 className="text-2xl font-semibold tracking-tight">Compare.</h3>
+            <p className="mt-1 text-muted-foreground">
+              Up to four models, side by side.
+            </p>
+            <div className="my-8 space-y-4">
+              {(["coding", "reasoning", "creativity"] as const).map((cat) => (
+                <div key={cat} className="space-y-1.5">
+                  <div className="flex justify-between text-xs text-muted-foreground">
+                    <span className="capitalize">{cat}</span>
+                    <span className="tabular-nums">
+                      {claude.scores[cat]} · {gpt.scores[cat]}
+                    </span>
+                  </div>
+                  <div className="flex gap-1.5">
+                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
+                      <div
+                        className="h-full rounded-full bg-foreground"
+                        style={{ width: `${claude.scores[cat]}%` }}
+                      />
+                    </div>
+                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
+                      <div
+                        className="h-full rounded-full bg-foreground/40"
+                        style={{ width: `${gpt.scores[cat]}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <p className="text-xs text-muted-foreground">
+                {claude.name} vs. {gpt.name}
+              </p>
+            </div>
+            <div className="mt-auto">
+              <TextLink href="/compare">Open the comparison</TextLink>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.05} className="flex flex-col rounded-2xl bg-background p-8 sm:p-10">
+            <h3 className="text-2xl font-semibold tracking-tight">Rankings.</h3>
+            <p className="mt-1 text-muted-foreground">
+              Tier lists and leaderboards, by category.
+            </p>
+            <div className="my-8 space-y-3">
+              {models.slice(0, 3).map((m, i) => (
+                <div key={m.id} className="flex items-center gap-3">
+                  <span className="w-4 text-sm text-muted-foreground tabular-nums">
+                    {i + 1}
+                  </span>
+                  <ModelAvatar
+                    name={m.name}
+                    provider={m.provider}
+                    className="size-7 shrink-0 text-xs"
+                  />
+                  <span className="flex-1 truncate text-sm font-medium">
+                    {m.name}
+                  </span>
+                  <span className="text-sm font-semibold tabular-nums">
+                    {averageScore(m.scores)}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-auto">
+              <TextLink href="/rankings">See all rankings</TextLink>
+            </div>
+          </FadeIn>
+
+          <FadeIn className="flex flex-col rounded-2xl bg-background p-8 sm:p-10">
+            <h3 className="text-2xl font-semibold tracking-tight">Pricing.</h3>
+            <p className="mt-1 text-muted-foreground">
+              What a prompt actually costs, per model.
+            </p>
+            <div className="my-8">
+              <p className="text-5xl font-semibold tracking-tighter tabular-nums">
+                {promptCostCents}¢
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                for 1,000 input tokens on {claude.name}. Paste your own prompt
+                and see the real number on every model.
+              </p>
+            </div>
+            <div className="mt-auto">
+              <TextLink href="/pricing-tools">Run the numbers</TextLink>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.05} className="flex flex-col rounded-2xl bg-background p-8 sm:p-10">
+            <h3 className="text-2xl font-semibold tracking-tight">Learn.</h3>
+            <p className="mt-1 text-muted-foreground">
+              Prompting, verification, and field playbooks.
+            </p>
+            <div className="my-8 rounded-xl bg-muted/60 p-4">
+              <p className="text-xs font-medium text-muted-foreground">
+                A better prompt
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed">
+                &ldquo;Rewrite this email to be half as long. Keep the ask in
+                the first sentence and the deadline in bold.&rdquo;
+              </p>
+            </div>
+            <div className="mt-auto">
+              <TextLink href="/learn">Start learning</TextLink>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Statement */}
+      <section className="bg-black px-4 py-24 text-white sm:px-6 sm:py-32">
+        <FadeIn className="mx-auto max-w-2xl space-y-5 text-center">
+          <h2 className="text-4xl font-semibold tracking-tighter sm:text-5xl">
+            Zero spin.
+          </h2>
+          <p className="text-lg leading-relaxed text-white/70">
+            Every model page lists real weaknesses next to real strengths, and
+            the same eight categories are applied to all six models. No
+            sponsors, no affiliate rankings.
+          </p>
+          <Link
+            href="/about"
+            className="group inline-flex items-center gap-1 text-[17px] text-white hover:underline"
+          >
+            How we grade
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </FadeIn>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="px-4 py-24 sm:px-6 sm:py-28">
+        <FadeIn className="mx-auto max-w-xl space-y-5 text-center">
+          <h2 className="text-4xl font-semibold tracking-tighter sm:text-5xl">
+            Ready when you are.
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Six questions, one minute, one clear recommendation.
+          </p>
+          <Button
+            size="lg"
+            className="rounded-full bg-foreground px-6 text-background hover:bg-foreground/90"
+            render={<Link href="/recommend" />}
+            nativeButton={false}
+          >
+            Take the quiz
+          </Button>
         </FadeIn>
       </section>
     </div>
