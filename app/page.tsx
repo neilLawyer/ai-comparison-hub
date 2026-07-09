@@ -30,9 +30,34 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="px-4 pt-20 pb-16 sm:px-6 sm:pt-28">
+      <section className="relative overflow-hidden px-4 pt-20 pb-16 sm:px-6 sm:pt-28">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div
+            className="aurora-blob opacity-50 dark:opacity-30"
+            style={{
+              top: "-30%",
+              left: "8%",
+              width: "45vw",
+              height: "45vw",
+              background:
+                "radial-gradient(circle at center, oklch(0.8 0.11 293) 0%, transparent 65%)",
+            }}
+          />
+          <div
+            className="aurora-blob opacity-40 dark:opacity-20"
+            style={{
+              top: "-15%",
+              right: "2%",
+              width: "38vw",
+              height: "38vw",
+              background:
+                "radial-gradient(circle at center, oklch(0.82 0.08 240) 0%, transparent 65%)",
+              animationDelay: "-14s",
+            }}
+          />
+        </div>
         <FadeIn className="mx-auto max-w-3xl space-y-5 text-center">
-          <h1 className="text-5xl font-semibold tracking-tighter text-balance sm:text-6xl lg:text-7xl">
+          <h1 className="font-display text-6xl text-balance sm:text-7xl">
             Which AI should you use?
           </h1>
           <p className="mx-auto max-w-xl text-xl leading-relaxed text-muted-foreground">
@@ -106,7 +131,7 @@ export default function Home() {
       <section className="bg-[#f5f5f7] px-4 py-16 dark:bg-[#0a0a0a] sm:px-6">
         <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2">
           <FadeIn className="flex flex-col rounded-2xl bg-background p-8 sm:p-10">
-            <h3 className="text-2xl font-semibold tracking-tight">Compare.</h3>
+            <h3 className="font-display text-3xl">Compare.</h3>
             <p className="mt-1 text-muted-foreground">
               Up to four models, side by side.
             </p>
@@ -145,7 +170,7 @@ export default function Home() {
           </FadeIn>
 
           <FadeIn delay={0.05} className="flex flex-col rounded-2xl bg-background p-8 sm:p-10">
-            <h3 className="text-2xl font-semibold tracking-tight">Rankings.</h3>
+            <h3 className="font-display text-3xl">Rankings.</h3>
             <p className="mt-1 text-muted-foreground">
               Tier lists and leaderboards, by category.
             </p>
@@ -175,7 +200,7 @@ export default function Home() {
           </FadeIn>
 
           <FadeIn className="flex flex-col rounded-2xl bg-background p-8 sm:p-10">
-            <h3 className="text-2xl font-semibold tracking-tight">Pricing.</h3>
+            <h3 className="font-display text-3xl">Pricing.</h3>
             <p className="mt-1 text-muted-foreground">
               What a prompt actually costs, per model.
             </p>
@@ -194,7 +219,7 @@ export default function Home() {
           </FadeIn>
 
           <FadeIn delay={0.05} className="flex flex-col rounded-2xl bg-background p-8 sm:p-10">
-            <h3 className="text-2xl font-semibold tracking-tight">Learn.</h3>
+            <h3 className="font-display text-3xl">Learn.</h3>
             <p className="mt-1 text-muted-foreground">
               Prompting, verification, and field playbooks.
             </p>
@@ -215,11 +240,17 @@ export default function Home() {
       </section>
 
       {/* Statement */}
-      <section className="bg-black px-4 py-24 text-white sm:px-6 sm:py-32">
-        <FadeIn className="mx-auto max-w-2xl space-y-5 text-center">
-          <h2 className="text-4xl font-semibold tracking-tighter sm:text-5xl">
-            Zero spin.
-          </h2>
+      <section className="relative overflow-hidden bg-black px-4 py-24 text-white sm:px-6 sm:py-32">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 90% at 50% 115%, oklch(0.45 0.25 293 / 0.4), transparent 70%)",
+          }}
+        />
+        <FadeIn className="relative mx-auto max-w-2xl space-y-5 text-center">
+          <h2 className="font-display text-5xl sm:text-6xl">Zero spin.</h2>
           <p className="text-lg leading-relaxed text-white/70">
             Every model page lists real weaknesses next to real strengths, and
             the same eight categories are applied to all six models. No
@@ -238,7 +269,7 @@ export default function Home() {
       {/* Closing CTA */}
       <section className="px-4 py-24 sm:px-6 sm:py-28">
         <FadeIn className="mx-auto max-w-xl space-y-5 text-center">
-          <h2 className="text-4xl font-semibold tracking-tighter sm:text-5xl">
+          <h2 className="font-display text-5xl sm:text-6xl">
             Ready when you are.
           </h2>
           <p className="text-lg text-muted-foreground">

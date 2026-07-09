@@ -48,7 +48,7 @@ export function NavBar() {
       <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className="text-[15px] font-semibold tracking-tight"
+          className="font-display text-lg"
           aria-label="AI Comparison Hub — home"
         >
           Comparison Hub
@@ -77,7 +77,7 @@ export function NavBar() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72">
               <SheetHeader>
-                <SheetTitle className="text-[15px] font-semibold tracking-tight">
+                <SheetTitle className="font-display text-lg font-normal">
                   Comparison Hub
                 </SheetTitle>
               </SheetHeader>

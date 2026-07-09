@@ -134,7 +134,34 @@
 }
 
 @utility font-display {
-  font-family: var(--font-geist-sans);
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(4%, -5%, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(-5%, 3%, 0) scale(0.95);
+  }
+}
+
+@utility aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+  animation: aurora-drift 32s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob {
+    animation: none;
+  }
 }
